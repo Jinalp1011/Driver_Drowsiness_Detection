@@ -76,9 +76,9 @@ def detect_drowsiness(request):
             if status1 == 2 and status2 == 2:
             #if pred1 == 2 and pred2 == 2:
                 count += 1
-                cv2.putText(frame, "Eyes Closed, Frame count: " + str(count), (10, 30), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 255), 1)
+                cv2.putText(frame, "Eyes Closed, Frame count: " + str(count), (5, 20), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 255), 1)
                 # if eyes are closed for 10 consecutive frames, start the alarm
-                if count >= 10:
+                if count >= 5:
                     cv2.putText(frame, "Drowsiness Alert!!!", (100, height-20), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 255), 2)
                     if not alarm_on:
                         alarm_on = True
@@ -87,7 +87,7 @@ def detect_drowsiness(request):
                         t.daemon = True
                         t.start()
             else:
-                cv2.putText(frame, "Eyes Open", (10, 30), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 255, 0), 1)
+                cv2.putText(frame, "Eyes Open", (5, 20), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 255, 0), 1)
                 count = 0
                 alarm_on = False
 

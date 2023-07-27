@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+     <div class="p-4 m-4">
+        <div class = "col-lg-5 mx-auto">
+            <h3 class="alert alert-light">Login Here</h3>
+            <form action = "/login" method="POST">
+                      
+                     {% csrf_token %}
+
+                     {% if error %}
+                     <div class = "alert alert-danger" role = "alert">
+                        {{error}}
+                     </div>
+                     {% endif %}
+
+               <!--email-->
+            <div class="form-group">
+                <label for="">License_id</label>
+                <input required type="text" name="license_id" id="" value="{{values.license_id}}" class="form-control form-control-sm" placeholder="GJ01 00000000000">
+            </div>
+
+               <!--Password-->
+            <div class="form-group">
+                <label for="">Password</label>
+                <input type="password" name="password" id="" value="{{values.password}}" class="form-control form-control-sm" placeholder="*********">
+            </div>
+            
+ 
+            <div class = "form-group form-contol-sm">
+                 <input class = "btn-btn btn-info" type="submit" value="Login">
+            </div>
+             
+        </div>
+     </div>
+</div>
+
+{% endblock %}

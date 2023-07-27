@@ -1,0 +1,28 @@
+/* Add this CSS to your style.css file */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #332222; /* Set a background color for the page */
+}
+
+.container-fluid {
+  height: 500%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Add this position property to center the image */
+  overflow: hidden; /* Hide the overflow to prevent horizontal scrolling */
+}
+
+.full-screen-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  z-index: -1; /* Push the image to the background */
+}

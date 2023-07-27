@@ -1,0 +1,45 @@
+{% extends base.html %}
+
+{% block content %}
+
+    <video id="videoElement" autoplay></video>
+    <button id="detectionButton">Detection</button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const video = document.getElementById("videoElement");
+
+            // Function to start webcam stream
+            function startWebcam() {
+                if (navigator.mediaDevices.getUserMedia) {
+                    navigator.mediaDevices.getUserMedia({ video: true })
+                        .then(function(stream)
+                        {
+                            video.srcObject = stream;
+                        })
+                        .catch(function(err) {
+                            console.error("Error accessing the webcam:", err);
+                        });
+                }
+            }
+
+            // Event listener for the detection button
+            const detectionButton = document.getElementById("detectionButton");
+            detectionButton.addEventListener("click", function() {
+                // Call the Django view that triggers the drowsiness detection
+                fetch('/detect_drowsiness/')
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data.message);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+
+            // Start the webcam stream when the page loads
+            startWebcam();
+        });
+        </script>
+
+{% endblock %}
